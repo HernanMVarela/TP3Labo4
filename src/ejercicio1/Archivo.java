@@ -23,7 +23,7 @@ public class Archivo {
 		this.ruta = ruta;
 	}
 	
-	//Constructores
+	//Constructors
 	public Archivo() {
 		
 	}
