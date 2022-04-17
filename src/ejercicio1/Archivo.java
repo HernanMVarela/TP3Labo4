@@ -34,7 +34,7 @@ public class Archivo {
 	}
 
 	//Metodos
-	public boolean existe()
+	public boolean Existe()
 	{
 		File archivo = new File(ruta); 
 		if(archivo.exists())
@@ -42,13 +42,13 @@ public class Archivo {
 		return false;
 	}
 	
-	public void lee_lineas() {
+	public void Lee_lineas() {
 		FileReader entrada;
 		try {
 			entrada = new FileReader(ruta);
 			BufferedReader miBuffer = new BufferedReader(entrada);
 			
-		   String linea = "";
+			String linea = miBuffer.readLine();
 			while (linea != null) {
 				String[] parts = linea.split("-");
 				if(parts[0] != "") {
@@ -65,6 +65,38 @@ public class Archivo {
 		} catch (IOException e) {
 			System.out.println("No se encontro el archivo");
 		}
+	}
+	
+	//Emanuel: Leer archivo y devolver un treeset
+	public static TreeSet<Persona> LeeArchivo(String ruta) {
+		FileReader entrada;
+		TreeSet<Persona> personas = new TreeSet<Persona>();
+		BufferedReader miBuffer;
+		try {
+			entrada = new FileReader(ruta);
+			miBuffer = new BufferedReader(entrada);
+			String linea = miBuffer.readLine();
+			while (linea != null) {
+				String[] part  = linea.split("-", 3) ;
+				Persona persona = new Persona(part[0], part[1], part[2]);
+				try {
+					if (!persona.VerificarDniInvalido(persona.getDni())) {
+						personas.add(persona);
+						}
+				} catch (DniInvalido e) {
+					System.out.println(e.getMessage());
+				}
+				linea = miBuffer.readLine();
+			}
+			miBuffer.close();
+			entrada.close();
+		} catch (IOException e) {
+			System.out.println("No se encontro el archivo");
+			System.out.println(e);
+		}
+		catch (NullPointerException n) {}
+		catch (ArrayIndexOutOfBoundsException a) {}
+		return personas;
 	}
 	
 }
