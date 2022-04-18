@@ -79,12 +79,14 @@ public class Archivo {
 			while (linea != null) {
 				String[] part  = linea.split("-", 3) ;
 				Persona persona = new Persona(part[0], part[1], part[2]);
-				try {
-					if (!persona.VerificarDniInvalido(persona.getDni())) {
-						personas.add(persona);
-						}
-				} catch (DniInvalido e) {
-					System.out.println(e.getMessage());
+				try 
+				{
+					Persona.verificarDniInvalido(persona.getDni());
+					personas.add(persona);
+				}
+				catch (DniInvalido e) 
+				{
+					e.printStackTrace();
 				}
 				linea = miBuffer.readLine();
 			}

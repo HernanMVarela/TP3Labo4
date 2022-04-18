@@ -62,8 +62,6 @@ public class Persona implements Comparable<Persona> {
 		
 	}
 	
-	
-	
 	public boolean equals(Object obj)
 	{
 		Persona objPersona;
@@ -76,6 +74,14 @@ public class Persona implements Comparable<Persona> {
 			}
 		}
 		    return false;
+	}
+	
+	public static void verificarDniInvalido(String dni) throws DniInvalido
+	{
+		if(!dni.matches("[0-9]+"))
+		{
+			throw new DniInvalido();
+		}
 	}
 }
 
