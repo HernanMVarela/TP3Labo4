@@ -64,16 +64,30 @@ public class Persona implements Comparable<Persona> {
 	
 	public boolean equals(Object obj)
 	{
-		Persona objPersona;
-		if(obj instanceof Persona)
-		{
-			objPersona = (Persona) obj;
-			if(objPersona.getApellido() == this.getApellido())
-			{
-				return true;
-			}
-		}
-		    return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;		
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;		
+		return true;		
+		
+//		Persona objPersona;
+//		if(obj instanceof Persona)
+//		{
+//			objPersona = (Persona) obj;
+//			if(objPersona.getApellido() == this.getApellido())
+//			{
+//				return true;
+//			}
+//		}
+//		    return false;
 	}
 	
 	public static void verificarDniInvalido(String dni) throws DniInvalido
