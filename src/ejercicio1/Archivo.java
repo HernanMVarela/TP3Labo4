@@ -129,13 +129,9 @@ public class Archivo {
 		} 
 		
 		catch (Exception e) {
-			
-			
-			
+			e.printStackTrace();
+						
 		}
-		
-		
-		
 		
 		
 	}
