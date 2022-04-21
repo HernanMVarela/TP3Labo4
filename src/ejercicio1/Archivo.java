@@ -101,4 +101,44 @@ public class Archivo {
 		return personas;
 	}
 	
+	public void GuardarArchivo(TreeSet<Persona> personas) {
+		
+		Iterator<Persona> ite = personas.iterator();
+		
+		FileWriter salidas;
+		BufferedWriter bSalidas;
+		
+		try {
+			
+			salidas = new FileWriter(ruta,true);
+			bSalidas = new BufferedWriter(salidas);
+			String perso = new String();
+			
+			while (ite.hasNext()) {
+				
+				Persona aux = (Persona)ite.next();
+				perso = aux.getNombre()+"-"+aux.getApellido()+"-"+aux.getDni();
+				
+				bSalidas.write(perso);
+				
+			}
+			
+			bSalidas.close();
+			salidas.close();
+			
+		} 
+		
+		catch (Exception e) {
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
 }
