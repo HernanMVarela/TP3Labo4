@@ -68,7 +68,7 @@ public class Archivo {
 	}
 	
 	//Emanuel: Leer archivo y devolver un treeset
-	public static TreeSet<Persona> LeeArchivo(String ruta) {
+	public TreeSet<Persona> LeeArchivo(String ruta) {
 		FileReader entrada;
 		TreeSet<Persona> personas = new TreeSet<Persona>();
 		BufferedReader miBuffer;
@@ -101,23 +101,24 @@ public class Archivo {
 		return personas;
 	}
 	
-	public void GuardarArchivo(TreeSet<Persona> personas) {
-		
+	public void GuardarArchivo(TreeSet<Persona> personas, File archivo) {
+	      
 		Iterator<Persona> ite = personas.iterator();
 		
 		FileWriter salidas;
 		BufferedWriter bSalidas;
 		
+		
 		try {
 			
-			salidas = new FileWriter(ruta,true);
+			salidas = new FileWriter(archivo,true);
 			bSalidas = new BufferedWriter(salidas);
 			String perso = new String();
 			
 			while (ite.hasNext()) {
 				
 				Persona aux = (Persona)ite.next();
-				perso = aux.getNombre()+"-"+aux.getApellido()+"-"+aux.getDni();
+				perso = aux.getNombre()+"-"+aux.getApellido()+"-"+aux.getDni()+"\n";
 				
 				bSalidas.write(perso);
 				
