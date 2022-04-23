@@ -77,12 +77,22 @@ public class Archivo {
 			miBuffer = new BufferedReader(entrada);
 			String linea = miBuffer.readLine();
 			while (linea != null) {
-				String[] part  = linea.split("-", 3) ;
+				String[] part  = linea.split("-") ;
 				Persona persona = new Persona(part[0], part[1], part[2]);
 				try 
 				{
 					Persona.verificarDniInvalido(persona.getDni());
-					personas.add(persona);
+					
+					Iterator<Persona> aux = personas.iterator();
+					boolean aux2 = true;
+					while(aux.hasNext()) {
+						if(persona.compareTo((Persona)aux.next())==0) {
+							aux2=false;
+						}
+					}
+					if(aux2) {
+						personas.add(persona);
+					}
 				}
 				catch (DniInvalido e) 
 				{
