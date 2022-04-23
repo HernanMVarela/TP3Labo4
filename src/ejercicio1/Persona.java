@@ -1,8 +1,6 @@
 package ejercicio1;
 
-
 public class Persona implements Comparable<Persona> {
-
 	
 	//atributos
 	private String nombre;
@@ -23,9 +21,6 @@ public class Persona implements Comparable<Persona> {
 		this.nombre =nombre;
 		this.apellido=apellido;
 	}
-	
-	
-	
 
 	//getters and setters
 	public String getNombre() {
@@ -47,8 +42,6 @@ public class Persona implements Comparable<Persona> {
 		this.dni = dni;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Persona, nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni;
@@ -57,9 +50,6 @@ public class Persona implements Comparable<Persona> {
 	@Override
 	public int compareTo(Persona o) {
 		return getApellido().compareTo(o.getApellido());
-		
-		//return o.apellido.compareTo(this.apellido);
-		
 	}
 	
 	public boolean equals(Object obj)
@@ -76,21 +66,10 @@ public class Persona implements Comparable<Persona> {
 				return false;
 		} else if (!dni.equals(other.dni))
 			return false;		
-		return true;		
-		
-//		Persona objPersona;
-//		if(obj instanceof Persona)
-//		{
-//			objPersona = (Persona) obj;
-//			if(objPersona.getApellido() == this.getApellido())
-//			{
-//				return true;
-//			}
-//		}
-//		    return false;
+		return true;
 	}
 	
-	public static void verificarDniInvalido(String dni) throws DniInvalido
+	public static void VerificarDniInvalido(String dni) throws DniInvalido
 	{
 		if(!dni.matches("[0-9]+"))
 		{

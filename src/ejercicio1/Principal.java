@@ -20,9 +20,6 @@ public class Principal {
 			System.out.println("No se pudo leer el archivo");
 		}
 		
-//		for (Persona persona : personas) {
-//			System.out.println(persona.toString());
-//		}
 		File fileResultado = new File(resultado); 
 		
 		archivoPersonas.GuardarArchivo(personas,fileResultado);

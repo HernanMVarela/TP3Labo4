@@ -11,61 +11,8 @@ import java.util.TreeSet;
 
 public class Archivo {
 	
-	//Atributos
-	private String ruta;
-	
-	//Getters & setters
-	public String getRuta() {
-		return ruta;
-	}
-
-	public void setRuta(String ruta) {
-		this.ruta = ruta;
-	}
-	
 	//Constructors
-	public Archivo() {
-		
-	}
-	
-	public Archivo(String ruta) {
-		
-		this.ruta = ruta;
-	}
-
-	//Metodos
-	public boolean Existe()
-	{
-		File archivo = new File(ruta); 
-		if(archivo.exists())
-		      return true;
-		return false;
-	}
-	
-	public void Lee_lineas() {
-		FileReader entrada;
-		try {
-			entrada = new FileReader(ruta);
-			BufferedReader miBuffer = new BufferedReader(entrada);
-			
-			String linea = miBuffer.readLine();
-			while (linea != null) {
-				String[] parts = linea.split("-");
-				if(parts[0] != "") {
-				System.out.print("Nombre: " + parts[0] + " ");
-				
-				System.out.print("Apellido: " + parts[1] + " ");
-				System.out.println();
-				}
-				linea = miBuffer.readLine();
-			}
-			miBuffer.close();
-			entrada.close();
-
-		} catch (IOException e) {
-			System.out.println("No se encontro el archivo");
-		}
-	}
+	public Archivo() { }
 	
 	//Emanuel: Leer archivo y devolver un treeset
 	public TreeSet<Persona> LeeArchivo(String ruta) {
@@ -81,7 +28,7 @@ public class Archivo {
 				Persona persona = new Persona(part[0], part[1], part[2]);
 				try 
 				{
-					Persona.verificarDniInvalido(persona.getDni());
+					Persona.VerificarDniInvalido(persona.getDni());
 					
 					Iterator<Persona> aux = personas.iterator();
 					boolean aux2 = true;
@@ -118,10 +65,9 @@ public class Archivo {
 		FileWriter salidas;
 		BufferedWriter bSalidas;
 		
-		
 		try {
 			
-			salidas = new FileWriter(archivo,true);
+			salidas = new FileWriter(archivo,false);
 			bSalidas = new BufferedWriter(salidas);
 			String perso = new String();
 			
@@ -137,15 +83,11 @@ public class Archivo {
 			bSalidas.close();
 			salidas.close();
 			
-		} 
+		}
 		
 		catch (Exception e) {
 			e.printStackTrace();
 						
 		}
-		
-		
 	}
-	
-	
 }
