@@ -24,7 +24,7 @@ public class Archivo {
 			miBuffer = new BufferedReader(entrada);
 			String linea = miBuffer.readLine();
 			while (linea != null) {
-				String[] part  = linea.split("-") ;
+				String[] part  = linea.split("-",3) ;
 				Persona persona = new Persona(part[0], part[1], part[2]);
 				try 
 				{
@@ -49,12 +49,13 @@ public class Archivo {
 			}
 			miBuffer.close();
 			entrada.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println("No se encontro el archivo");
 			System.out.println(e);
 		}
-		catch (NullPointerException n) {}
-		catch (ArrayIndexOutOfBoundsException a) {}
+		catch (Exception e) {e.printStackTrace();}
+		
 		return personas;
 	}
 	
@@ -71,23 +72,16 @@ public class Archivo {
 			bSalidas = new BufferedWriter(salidas);
 			String perso = new String();
 			
-			while (ite.hasNext()) {
-				
+			while (ite.hasNext()) {	
 				Persona aux = (Persona)ite.next();
-				perso = aux.getNombre()+"-"+aux.getApellido()+"-"+aux.getDni()+"\n";
-				
-				bSalidas.write(perso);
-				
+				perso = aux.getNombre()+"-"+aux.getApellido()+"-"+aux.getDni()+"\n";	
+				bSalidas.write(perso);	
 			}
-			
 			bSalidas.close();
-			salidas.close();
-			
+			salidas.close();	
 		}
-		
 		catch (Exception e) {
-			e.printStackTrace();
-						
+			e.printStackTrace();				
 		}
 	}
 }

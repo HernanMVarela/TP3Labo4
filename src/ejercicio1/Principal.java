@@ -23,7 +23,6 @@ public class Principal {
 		File fileResultado = new File(resultado); 
 		
 		archivoPersonas.GuardarArchivo(personas,fileResultado);
-		
 	}
 
 }
